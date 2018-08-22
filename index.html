@@ -36,7 +36,7 @@
                     <div class="col">
                             <h4>Take credit for this</h4>
                             <ul class="list-group">
-                                <li v-for="item in tasks" class="list-group-item text-muted" v-if="item.status" @click="taskundone(item.id)">{{ item.text }}</li>
+                                <li v-for="item in tasks" class="list-group-item text-muted" v-if="item.status" @click="taskundone(item.id)" style="cursor: pointer">{{ item.text }}</li>
                             </ul>
                     </div>
                 </div>
