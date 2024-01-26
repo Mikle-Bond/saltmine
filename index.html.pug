@@ -1,0 +1,79 @@
+//- vim: set ts=2 sts=2 sw=2 et autoindent :
+-
+  var links = {
+    "pico.css": "https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css",
+    "tachyons.css": "https://unpkg.com/tachyons/css/tachyons.min.css",
+    "missing.css": "https://unpkg.com/missing.css@1.1.1",
+    "_hyperscript_w9y": "https://cdn.jsdelivr.net/gh/bigskysoftware/_hyperscript@0.9.5/dist/_hyperscript_w9y.min.js",
+    "_hyperscript": "https://unpkg.com/hyperscript.org@0.9.12",
+  };
+
+  var stylesheets = [ links["pico.css"] ];
+  var scripts = [ links["_hyperscript"] ];
+
+doctype html
+html(lang='en')
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    title Todos
+
+    each style in stylesheets
+      link(rel="stylesheet" href=style)
+
+    each source in scripts
+      script(type="text/javascript" src=source)
+
+    script(type="text/hyperscript").
+      behavior List(neighbor)
+        on click(target)
+          if I am not the target 
+          toggle .secondary on target
+          put target at the end of the neighbor
+        end
+      end
+
+    // Make ListItems display as such, even with role of a button
+    style li[role="button"]{display: list-item}
+        
+  body
+    main.container
+      hgroup
+        h1 Daily Saltmine
+        h2 Task list in your browser
+      form.form(_=`on submit
+          preventDefault() on event 
+          set text to the #input's value
+          if text
+          make a <li.outline/> called item
+          put text into its textContent
+          set item's @role to 'button'
+          put beep! item at the end of #todo
+          set #input's value to ''
+        end
+        `)
+        .container
+          input#input(autofocus=true placeholder="Add a task for the saltmine")
+          button Add your task
+
+      hr
+      .grid
+        details(open)
+          summary Do this
+          ul.container-fluid#todo(_="install List(neighbor: #done)")
+        details(open)
+          summary Take credit for this
+          ul.container-fluid#done(_="install List(neighbor: #todo)")
+      hr
+      footer
+        p.small.
+            ToDo in your browser. Click a "Do this" item to move it to the
+            "Take credit for this" box and vice versa. Privacy policy: nothing
+            is stored, close your browser tab and everything's gone.  Want the
+            source code? Available with MIT license here (a single html file):
+            <a href="https://github.com/hakdo/saltmine">github.com/hakdo/saltmine</a>
+            Feedback: Twitter <a href="https://twitter.com/sjefersuper">@sjefersuper</a>.
+            
+
