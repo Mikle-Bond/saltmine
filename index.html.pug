@@ -43,16 +43,19 @@ html(lang='en')
       hgroup
         h1 Daily Saltmine
         h2 Task list in your browser
-      form.form(_=`on submit
+
+      template#template
+        li.task.outline(role='button')
+      form(_=`on submit
           preventDefault() on event 
           set text to the #input's value
           if text
-          make a <li.outline/> called item
-          put text into its textContent
-          set item's @role to 'button'
-          put beep! item at the end of #todo
-          set #input's value to ''
-        end
+            set templ to #template.content.cloneNode(true)
+            set item to templ.querySelector('.task')
+            put text into item's textContent
+            put item at the end of #todo
+            set #input's value to ''
+          end
         `)
         .container
           input#input(autofocus=true placeholder="Add a task for the saltmine")
