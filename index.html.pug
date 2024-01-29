@@ -61,8 +61,15 @@ html(lang='en')
           input#input(autofocus=true placeholder="Add a task for the saltmine")
           button Add your task
 
+      #counter
+        p Done #[output.done 0] out of #[output.total 0] total
       hr
-      .grid
+      .grid(_=`on mutation of childList or subtree
+          get length of <#done .task/>
+          put it into first <output.done/>
+          get length of <.task/>
+          put it into first <output.total/>
+        `)
         details(open)
           summary Do this
           ul.container-fluid#todo(_="install List(neighbor: #done)")
