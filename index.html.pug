@@ -9,7 +9,7 @@
   };
 
   var stylesheets = [ links["pico.css"] ];
-  var scripts = [ links["_hyperscript"] ];
+  var scripts = [ links["_hyperscript_w9y"] ];
 
 doctype html
 html(lang='en')
@@ -57,10 +57,8 @@ html(lang='en')
             set #input's value to ''
           end
         `)
-        .container
-          input#input(autofocus=true placeholder="Add a task for the saltmine")
-          button Add your task
-
+        input#input(autofocus=true placeholder="Add a task for the saltmine")
+        button(role='submit') Add your task
       #counter
         p Done #[output.done 0] out of #[output.total 0] total
       hr
@@ -72,18 +70,18 @@ html(lang='en')
         `)
         details(open)
           summary Do this
-          ul.container-fluid#todo(_="install List(neighbor: #done)")
+          ul#todo(_="install List(neighbor: #done)")
         details(open)
           summary Take credit for this
-          ul.container-fluid#done(_="install List(neighbor: #todo)")
+          ul#done(_="install List(neighbor: #todo)")
       hr
       footer
         p.small.
-            ToDo in your browser. Click a "Do this" item to move it to the
-            "Take credit for this" box and vice versa. Privacy policy: nothing
-            is stored, close your browser tab and everything's gone.  Want the
-            source code? Available with MIT license here (a single html file):
-            <a href="https://github.com/hakdo/saltmine">github.com/hakdo/saltmine</a>
-            Feedback: Twitter <a href="https://twitter.com/sjefersuper">@sjefersuper</a>.
+          ToDo in your browser. Click a "Do this" item to move it to the
+          "Take credit for this" box and vice versa. Privacy policy: nothing
+          is stored, close your browser tab and everything's gone.  Want the
+          source code? Available with MIT license here (a single html file):
+          <a href="https://github.com/hakdo/saltmine">github.com/hakdo/saltmine</a>
+          Feedback: Twitter <a href="https://twitter.com/sjefersuper">@sjefersuper</a>.
             
 
