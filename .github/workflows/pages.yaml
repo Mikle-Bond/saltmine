@@ -41,12 +41,11 @@ jobs:
       - name: Install Pug.js CLI
         run: npm install -g pug-cli
       - name: Make
-        run: make
+        run: make dist
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # single file
-          path: 'index.html'
+          path: '_site/'
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v2
